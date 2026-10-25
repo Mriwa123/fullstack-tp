@@ -1,3 +1,4 @@
+import { reviewsRouter } from "./reviews.js";
 import { Router } from "express";
 import { validate } from "../middlewares/validate.js";
 import { idParam, listQuery, productBody, productPatch } from "../schemas/product.js";
@@ -8,6 +9,8 @@ export const productsRouter = Router();
 productsRouter.get("/", validate(listQuery, "query"), async (_req, res) => {
   res.json(await service.list(res.locals.query));
 });
+
+productsRouter.use("/:productId/reviews", reviewsRouter);
 
 productsRouter.get("/:id", validate(idParam, "params"), async (_req, res) => {
   const product = await service.getById(res.locals.params.id);

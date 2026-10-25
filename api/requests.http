@@ -1,15 +1,5 @@
-@base = http://localhost:4000/api
-
-### list with pagination
-GET {{base}}/products?limit=5&skip=0
-
-### search + filter
-GET {{base}}/products?q=phone&category=smartphones
-
-### one product
-GET {{base}}/products/101
-
 ### create
+# @name createProduct
 POST {{base}}/products
 Content-Type: application/json
 
@@ -22,20 +12,11 @@ Content-Type: application/json
   "category": "lab"
 }
 
-### invalid body -> 400
-POST {{base}}/products
-Content-Type: application/json
-
-{ "title": "x", "price": -5 }
-
-### update
-PATCH {{base}}/products/101
+### update (sur le produit cree)
+PATCH {{base}}/products/{{createProduct.response.body.id}}
 Content-Type: application/json
 
 { "price": 9.5 }
 
-### delete (remplace par l'id du produit cree)
-DELETE {{base}}/products/201
-
-### not found -> 404
-GET {{base}}/products/99999
+### delete (sur le produit cree)
+DELETE {{base}}/products/{{createProduct.response.body.id}}

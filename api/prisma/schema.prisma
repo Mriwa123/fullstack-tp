@@ -11,6 +11,7 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
 model Category {
   id       Int       @id @default(autoincrement())
   name     String    @unique
@@ -30,5 +31,20 @@ model Product {
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  Int
 
+  reviews     Review[]
+
   @@index([categoryId])
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  author    String
+  rating    Int
+  comment   String
+  createdAt DateTime @default(now())
+
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+
+  @@index([productId])
 }
