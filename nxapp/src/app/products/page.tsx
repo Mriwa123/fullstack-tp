@@ -13,7 +13,8 @@ export default async function Products({
   const skip = Math.max(0, Number(skipParam) || 0);
 
   const response = await fetch(
-    `https://dummyjson.com/products?limit=${LIMIT}&skip=${skip}`
+    `${process.env.API_URL}/products?limit=${LIMIT}&skip=${skip}`,
+    { cache: "no-store" }
   );
   if (!response.ok) {
     return <p className="p-4">Unable to load the products</p>;

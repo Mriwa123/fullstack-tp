@@ -8,7 +8,9 @@ export default async function ProductDetail({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const response = await fetch(`https://dummyjson.com/products/${id}`);
+  const response = await fetch(`${process.env.API_URL}/products/${id}`, {
+    cache: "no-store",
+  });
   if (!response.ok) {
     return <p className="p-4">Product not found</p>;
   }
@@ -29,9 +31,9 @@ export default async function ProductDetail({
         />
         <div>
           <h1 className="text-2xl font-bold">{product.title}</h1>
-          <p className="text-green-600">${product.price}</p>
+          <p className="text-green-600">${Number(product.price)}</p>
           <p className="text-sm text-gray-500">
-            {product.category} · {product.brand} · ★ {product.rating} · stock: {product.stock}
+            {product.category.name} · stock: {product.stock}
           </p>
           <p className="mt-4">{product.description}</p>
         </div>

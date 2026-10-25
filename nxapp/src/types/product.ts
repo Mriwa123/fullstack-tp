@@ -1,14 +1,16 @@
+export interface Category {
+  id: number;
+  name: string;
+}
+
 export interface Product {
   id: number;
   title: string;
   description: string;
-  price: number;
+  price: string | number;
   thumbnail: string;
-  category: string;
-  images: string[];
-  brand?: string;
-  rating: number;
   stock: number;
+  category: Category;
 }
 
 export interface ProductsResponse {
