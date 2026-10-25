@@ -11,7 +11,7 @@
       <div class="col-md-7">
         <h1>{{ p.title }}</h1>
         <p class="text-success fs-4 fw-bold">{{ '$' + p.price }}</p>
-        <p class="text-muted">{{ p.category }} · {{ p.brand }} · ★ {{ p.rating }} · stock: {{ p.stock }}</p>
+        <p class="text-muted">{{ p.category.name }} · stock: {{ p.stock }}</p>
         <p>{{ p.description }}</p>
       </div>
     </div>
