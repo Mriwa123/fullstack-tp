@@ -9,7 +9,7 @@ export default function Home() {
   }
 
   function gotoContact() {
-    router.push("/contact");
+    router.push("/contact/123");
   }
 
   return (
